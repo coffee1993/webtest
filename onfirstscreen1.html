@@ -1,0 +1,53 @@
+<html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>tbs.event.onfirstscreen1</title></head>
+  
+  <body onload="load()">
+    <p id="p1">正式环境!</p>
+    <span style="font-size: 16px;">
+      <script language="javascript">function getQueryString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null) return unescape(r[2]);
+          return null;
+        }</script>
+    </span>
+    <script type="text/javascript" id="yy" src="http://res.imtt.qq.com/tbs/tbs.js"></script>
+    <script>var Request = new Object();
+      Request = getQueryString("inv");
+      if (Request == 'real') {
+        document.getElementById('yy').src = "http://res.imtt.qq.com/tbs/tbs.js";
+        document.getElementById("p1").innerHTML = "正式环境!";
+      } else {
+        document.getElementById('yy').src = "http://res.imtt.qq.com/tbs_test/tbs.js";
+        document.getElementById("p1").innerHTML = "测试环境!";
+      }
+  </script>
+
+    <script type="text/javascript">
+    	function load() {
+        tbs.event.onfirstscreen(function(ret) {
+          /* alert('tbs.event.onfirstscreen()::ret=' + ret.value);  */
+          alert('tbs.event.onfirstscreen()::ret=' + ret.value + ' timestamp=' + ret.timestamp);
+        });
+
+      }
+      function onFirstscreen(event) {　　　　　
+      	alert("event: onfirstscreen " + event.value);
+      }
+  </script>
+    <p>onfirstscreen测试页面1
+      <br>tbs.event.onfirstscreen(info)
+      <br>从loadurl开始，到内容铺满首屏所需时间
+      <br>@param {Object} info 参数
+      <br>{String} value 首屏完成时间（从loadurl开始，到内容铺满首屏所需时间）</p>
+    <br>
+    <!-- <p>tbs.event.onfirstscreen</p>
+    <a href="http://res.imtt.qq.com///tbs_js_test_stg/test_pages/tbs.event.onfirstscreen2.html">
+    <input type="button" value="进入测试页面2" style="width:300px;height:50px;"><br></a>
+    -->
+  </body>
+
+</html>
